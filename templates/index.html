@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="UTF-8">
+    <title>EsayGo</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <!-- import CSS style -->
+    <link rel="stylesheet" type="text/css" href="/static/style/style.css">
+
+    <!-- import ECharts js -->
+    <script src="/static/javascript/echarts.js"></script>
+
+    <!-- import ECharts style -->
+    <script src="/static/javascript/westeros.js" type="text/javascript" charset="utf-8"></script>
+
+
+</head>
+
+<body>
+<div class="header">
+    <h1>EsayGo</h1>
+    <p>Find a best time to leave.</p>
+</div>
+<style>
+    p {
+        line-height: 25px
+    }
+</style>
+<!-- <div class="navbar">
+<a href="#">link</a>
+<a href="#">link</a>
+<a href="#">link</a>
+<a href="#" class="right">link</a>
+</div> -->
+
+<div class="row">
+    <div class="side">
+        <h2>Time Now</h2>
+        <font size="5" color="#516b91">
+            <div id="show_time"> </div>
+        </font>
+        <script>
+            setInterval("fun(show_time)", 1);
+
+            function fun(timeID) {
+                var date = new Date();
+                var y = date.getFullYear();
+                var m = date.getMonth() + 1;
+                var d = date.getDate();
+                var h = date.getHours();
+                var minute = date.getMinutes()
+                var s = date.getSeconds();
+                if (m < 10) {
+                    m = "0" + m;
+                }
+                if (d < 10) {
+                    d = "0" + d;
+                }
+                if (h < 10) {
+                    h = "0" + h;
+                }
+                if (minute < 10) {
+                    minute = "0" + minute;
+                }
+                if (s < 10) {
+                    s = "0" + s;
+                }
+
+                document.getElementById(timeID.id).innerHTML = y + "-" + m + "-" + d + "   "
+                    + h + ":" + minute + ":" + s + "  ";
+            }
+        </script>
+        <br><br>
+        <!--h2>Today's weather</h2>
+        <<h3>Temperature </h3>
+        <h1> 6 ℃</h1>
+        < <br>
+        <h3>Humidity : 64 %</h3>
+        <h3>Wind : 17 miles/hour </h3>-->
+        <h2>About this Project </h2>
+        <font size="2">
+            <p>
+                The Head of People and Business Services at ONS, has contacted the Campus with an idea for a project
+                looking at resolve the issue with limited car parking spaces at the Newport site. The ONS has a flexible
+                working policy and hot desking where many staff have the ability to work from home or change their
+                working hours on a week-by-week or a day-by-day format. Car entries and exits data (from ANPR) is
+                collected by supplier, and linked to registered cars to identify as ‘Staff’, ‘Guest’ and possibly other
+                categories. ONS has access to this data in pretty much live time. ONS would like to use this data to
+                look at:
+                <br>
+                <br>
+                • How heavy is traffic flow is over the day – eg updated every X minutes.<br><br>
+                • Entries and exits per time-point – ie to help plan traffic calming etc. The primary interest is
+                understanding whether ONS needs to invest in additional car-park spaces, or whether there are other
+                cheaper/more environmental measures we can propose to reduce car-use / increase car-sharing or working
+                from home (perhaps on certain days). The data could also be useful to staff eg in planning when to come
+                in / leave – and we would look at making this available via an app.<br><br>
+            </p>
+        </font>
+        <br><br>
+
+        <h2>The possible product</h2>
+        <font size="2">
+            <p>
+                The product could encompass several features.<br><br>
+
+                1) Enable us to understand the variables that lead to parking saturation, weather, day of the week,
+                month etc.<br>
+                2) Enable real time visualisation of traffic levels via an app.<br>
+                3) Forecast risk of saturation week ahead on an app?<br>
+            </p>
+        </font>
+        <br><br>
+
+        <h2>Main tasks</h2>
+        <font size="2">
+            <p>
+                This project involves:<br><br>
+                1) Data Cleaning and wrangling<br>
+                2) Time series analysis<br>
+                3) Data linking with weather, traffic or environmental data<br>
+                4) Data Visualisation<br>
+                5) App generation<br>
+
+            </p>
+        </font>
+        <br><br>
+
+
+    </div>
+    <div class="main">
+        <h2>Prediction Results: Decision Tree</h2>
+        <h5>Prediction result of decision tree model. The prediction is 3 days ahead of recent time</h5>
+        <div id="main1" style="height:450px;"> chart</div>
+        <script type="text/javascript">
+            // charts entity
+            var myChart1 = echarts.init(document.getElementById('main1'), 'westeros');
+
+
+            function fetchData() {
+                $.ajax({
+                    type: "GET",
+                    url: "http://127.0.0.1:8000/demo/tree",
+                    dataType: 'json',
+                    success: function (result) {
+                        myChart1.setOption(result.data);
+                    }
+                });
+            }
+
+            fetchData()
+
+        </script>
+        <p></p>
+        <br>
+
+
+        <h2>Historical Data</h2>
+        <h5> Historical entries and exits</h5>
+        <div id="main2" style="height:450px;">chart</div>
+        <script type="text/javascript">
+            // charts entity
+            var myChart2 = echarts.init(document.getElementById('main2'), 'westeros')
+
+            function fetchData() {
+                $.ajax({
+                    type: "GET",
+                    url: "http://127.0.0.1:8000/demo/historyE",
+                    dataType: 'json',
+                    success: function (result) {
+                        myChart2.setOption(result.data);
+                    }
+                });
+            }
+
+            fetchData()
+
+        </script>
+        <p></p>
+        <br>
+
+        <h5>Categories of transmit</h5>
+        <div id="main3" style="height:450px;">chart</div>
+        <script type="text/javascript">
+            // charts entity
+            var myChart3 = echarts.init(document.getElementById('main3'), 'westeros')
+
+            function fetchData() {
+                $.ajax({
+                    type: "GET",
+                    url: "http://127.0.0.1:8000/demo/historyC",
+                    dataType: 'json',
+                    success: function (result) {
+                        myChart3.setOption(result.data);
+                    }
+                });
+            }
+
+            fetchData()
+
+        </script>
+        <p></p>
+
+
+        <br>
+        <h5>Transmit on each lane</h5>
+        <div id="main4" style="height:450px;">chart</div>
+        <script type="text/javascript">
+            // charts entity
+            var myChart4 = echarts.init(document.getElementById('main4'), 'westeros')
+
+            function fetchData() {
+                $.ajax({
+                    type: "GET",
+                    url: "http://127.0.0.1:8000/demo/historyL",
+                    dataType: 'json',
+                    success: function (result) {
+                        myChart4.setOption(result.data);
+                    }
+                });
+            }
+
+            fetchData()
+        </script>
+        <h2>Visualization of the Modeling Data</h2>
+
+        <div style="text-align: center; mso-line-spacing : '10p';">
+            <br><br><br>
+            <img src="/static/img/1.png" height="400"/>
+            <br><br><br>
+            <img src="/static/img/2.png" height="400"/>
+            <br><br><br>
+            <img src="/static/img/3.png" height="300"/><br>
+        </div>
+
+
+        <br>
+
+
+    </div>
+</div>
+
+<div class="footer">
+    <h2>Yellow@2020</h2>
+    <h3>Group Members</h3>
+    <p>
+        Stefeno Vorkas<br>
+        Bethany Miller <br>
+        Edouard Payne <br>
+        Zhaorui Tan <br>
+        Jie Shen <br>
+    </p>
+</div>
+</body>
+
+</html>
