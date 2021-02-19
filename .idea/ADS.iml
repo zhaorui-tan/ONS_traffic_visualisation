@@ -18,15 +18,12 @@
       <sourceFolder url="file://$MODULE_DIR$/demo" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/demo/data" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.7 (2)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Python 3.7 (base) (3)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jquery" level="application" />
     <orderEntry type="library" name="echarts" level="application" />
   </component>
   <component name="TemplatesService">
     <option name="TEMPLATE_CONFIGURATION" value="Django" />
-  </component>
-  <component name="TestRunnerService">
-    <option name="PROJECT_TEST_RUNNER" value="Unittests" />
   </component>
 </module>
